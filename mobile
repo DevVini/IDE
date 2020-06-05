@@ -1,0 +1,158 @@
+package codeMobile;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import mainPage.Dev;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTree;
+import javax.swing.JComboBox;
+import java.awt.Font;
+import java.awt.MenuBar;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDesktopPane;
+import javax.swing.JToolBar;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.Insets;
+import java.awt.Color;
+import java.awt.SystemColor;
+
+public class Mobile extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Mobile frame = new Mobile();
+					frame.setVisible(false);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Mobile() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1920, 1080);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton Voltar = new JButton("Voltar");
+		Voltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Dev frame = new Dev();
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+			dispose();
+			}
+			
+		});
+		Voltar.setBounds(1805, 982, 89, 23);
+		contentPane.add(Voltar);
+				
+
+		addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent MobileClose) {
+				if(MobileClose.getID()== WindowEvent.WINDOW_CLOSING){
+					String[] opcoes = {"Sim", "Não"};
+					int sairMobile = JOptionPane.showOptionDialog(null, "Deseja realmente sair?", "CONFIRMAÇÃO", JOptionPane.DEFAULT_OPTION, 3, null, opcoes, opcoes[0]);
+				if(sairMobile== 0 || sairMobile== -1) {
+					System.exit(0);
+				}else {
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				}
+				}
+			}
+		});
+		
+		JMenuBar barra = new JMenuBar();
+		
+		JMenu File = new JMenu ("File");
+		JMenu Edit = new JMenu ("Edit");
+		JMenu Compilation = new JMenu ("Compilation");
+		JMenu Help = new JMenu ("Help");
+		
+	
+		JMenuItem Nw = new JMenuItem("New");
+		JMenuItem OpenF = new JMenuItem("Open File");
+		JMenuItem OpenP = new JMenuItem("Open Projects");
+		JMenuItem Close = new JMenuItem("Close");
+		JMenuItem CloseAll = new JMenuItem("Close All");
+		JMenuItem Save = new JMenuItem("Save");
+		
+	
+		JMenuItem Copy = new JMenuItem("Copy");
+		JMenuItem SelectAll = new JMenuItem("Select All");
+		JMenuItem Delete = new JMenuItem("Delete");
+		JMenuItem Cut = new JMenuItem("Cut");
+		JMenuItem Paste = new JMenuItem("Paste");
+		
+		
+		JMenuItem CompAll = new JMenuItem("Compilation all");
+		
+	
+		JMenuItem Search = new JMenuItem("Search");
+		JMenuItem WebSite = new JMenuItem("Web Site");
+		JMenuItem Exit = new JMenuItem("Exit");
+		
+		
+		barra.add(File);
+		barra.add(Edit);
+		barra.add(Compilation);
+		barra.add(Help);
+		
+		File.add(Nw);
+		File.add(OpenF);
+		File.add(OpenP);
+		File.add(Close);
+		File.add(CloseAll);
+		File.add(Save);
+		
+		Edit.add(Copy);
+		Edit.add(SelectAll);
+		Edit.add(Delete);
+		Edit.add(Cut);
+		Edit.add(Paste);
+		
+		Compilation.add(CompAll);
+		
+		Help.add(WebSite);
+		Help.add(Search);
+		Help.add(Exit);
+		
+		barra.setBackground(SystemColor.menu);
+		barra.setBounds(0, 0, 1951, 23);
+		contentPane.add(barra);
+		
+		
+		
+		
+		
+	}
+}
