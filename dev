@@ -1,0 +1,166 @@
+package mainPage;
+
+import codeMobile.Mobile;
+import codeWeb.Web;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JEditorPane;
+import java.awt.Color;
+import javax.swing.UIManager;
+import java.awt.Dialog.ModalExclusionType;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JDesktopPane;
+
+public class Dev extends JFrame {
+	 
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Dev frame = new Dev();
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Dev() {
+		setTitle("FULLDEV");
+		setBackground(Color.GRAY);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Vinicius\\Desktop\\images.png"));
+		setForeground(Color.BLACK);
+		setFont(new Font("Arial Black", Font.PLAIN, 16));
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 743, 340);
+		contentPane = new JPanel();	
+		contentPane.setForeground(SystemColor.desktop);
+		contentPane.setBackground(SystemColor.desktop);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+	
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				if (e.getID() == WindowEvent.WINDOW_CLOSING){
+					Object[] options = { "Sim", "Não" }; 
+					int sair = JOptionPane.showOptionDialog(null, "Você tem certeza que deseja sair?", "Confirmação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					
+					if (sair==0 || sair== -0) {
+						System.exit(0);
+				}	
+			}
+			}
+		});
+		
+		JButton botaoWeb = new JButton("WEB");
+		botaoWeb.setForeground(SystemColor.text);
+		botaoWeb.setBackground(SystemColor.textHighlight);
+		botaoWeb.setToolTipText("Programa\u00E7\u00E3o Web");
+		botaoWeb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			Web frame = new Web();
+			frame.setExtendedState(MAXIMIZED_BOTH);
+			frame.setVisible(true);
+			dispose();
+		
+			}
+		
+		});
+		botaoWeb.setFont(new Font("Arial", Font.PLAIN, 12));
+		botaoWeb.setBounds(250, 138, 89, 23);
+		contentPane.add(botaoWeb);
+		
+		JButton botaoMobile = new JButton("MOBILE");
+		botaoMobile.setForeground(SystemColor.text);
+		botaoMobile.setBackground(SystemColor.textHighlight);
+		botaoMobile.setToolTipText("Programa\u00E7\u00E3o Mobile");
+		botaoMobile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Mobile frame = new Mobile();
+				frame.setExtendedState(MAXIMIZED_BOTH);
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+		botaoMobile.setFont(new Font("Arial", Font.PLAIN, 12));
+		botaoMobile.setBounds(488, 138, 89, 23);
+		contentPane.add(botaoMobile);
+		
+		JEditorPane dtrpnSejaBemVindo = new JEditorPane();
+		dtrpnSejaBemVindo.setForeground(SystemColor.text);
+		dtrpnSejaBemVindo.setEditable(false);
+		dtrpnSejaBemVindo.setBackground(SystemColor.desktop);
+		dtrpnSejaBemVindo.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		dtrpnSejaBemVindo.setText("SEJA BEM VINDO AO FULLDEV, AQUI VOC\u00CA PODERA ESCOLHER ONDE PROGRAMAR E QUAL LINGUAGEM USAR!");
+		dtrpnSejaBemVindo.setBounds(41, 22, 516, 48);
+		contentPane.add(dtrpnSejaBemVindo);
+		
+		JLabel lblEscolhaSuaArea = new JLabel("ESCOLHA SUA AREA:");
+		lblEscolhaSuaArea.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblEscolhaSuaArea.setBackground(SystemColor.desktop);
+		lblEscolhaSuaArea.setForeground(SystemColor.text);
+		lblEscolhaSuaArea.setBounds(41, 135, 136, 29);
+		contentPane.add(lblEscolhaSuaArea);
+		
+		JLabel lblOr = new JLabel("OR");
+		lblOr.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblOr.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOr.setForeground(Color.WHITE);
+		lblOr.setBounds(361, 135, 83, 29);
+		contentPane.add(lblOr);
+		
+		JButton Exit = new JButton("EXIT");
+		Exit.setBackground(SystemColor.textHighlight);
+		Exit.setForeground(SystemColor.text);
+		Exit.setToolTipText("Sair do Aplicativo");
+		Exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				  Object[] options = { "Sim", "Não" }; 
+		          int opcao= JOptionPane.showOptionDialog(null, "Você tem certeza que deseja sair?", "Confirmação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			
+				if (opcao==0 || opcao== -0) {
+					System.exit(0);
+				}
+				
+			}
+			
+		});
+		Exit.setFont(new Font("Arial", Font.PLAIN, 12));
+		Exit.setBounds(600, 267, 89, 23);
+		contentPane.add(Exit);
+	}
+
+	
+}
