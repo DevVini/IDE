@@ -1,0 +1,241 @@
+package ProgramWeb;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.sound.sampled.Control;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import View.Dev;
+import controle.fodase;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+
+public class Web extends JFrame {
+
+	private JPanel contentPane;
+
+	 
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Web frame = new Web();
+					frame.setExtendedState(MAXIMIZED_BOTH);
+					frame.setVisible(false);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Web() {
+		setTitle("PROGRAMA\u00C7\u00C3O WEB");
+		setBackground(new Color(240, 240, 240));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1920, 1080);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		
+		addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent WebClose) {
+				if(WebClose.getID()== WindowEvent.WINDOW_CLOSING){
+					String[] opcoes = {"Sim", "Não"};
+					int sairWeb = JOptionPane.showOptionDialog(null, "Deseja realmente sair?", "CONFIRMAÇÃO", JOptionPane.DEFAULT_OPTION, 3, null, opcoes, opcoes[0]);
+				if(sairWeb== 0 || sairWeb== -1) {
+					System.exit(0);
+				}else {
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				}
+				}
+			}
+		});
+	
+		JTextArea texto = new JTextArea();
+		JScrollPane scroll = new JScrollPane (texto); 
+		
+		scroll.setBounds(0, 21, 1921, 966);
+		contentPane.add(scroll);
+		
+		
+		JButton Voltar = new JButton("Voltar");
+		Voltar.setToolTipText("Voltar para o Menu");
+		Voltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Dev frame = new Dev();
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+			dispose();
+			}
+		});
+		Voltar.setBounds(1805, 982, 89, 23);
+		contentPane.add(Voltar);
+		
+		
+		
+		//barra do men
+		JMenuBar barra = new JMenuBar();
+		
+		JMenu File = new JMenu ("File");
+		JMenu Edit = new JMenu ("Edit");
+		JMenu Compilation = new JMenu ("Compilation");
+		JMenu Help = new JMenu ("Help");
+		
+		
+		
+		//sub menu do File
+		JMenuItem Nw = new JMenuItem("New File");
+		Nw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent NwEvent) {
+				texto.setVisible(false);
+				JTextArea texto1 = new JTextArea();
+				JScrollPane scroll1 = new JScrollPane (texto1); 
+				scroll1.setBounds(0, 21, 1921, 966);
+				contentPane.add(scroll1);
+				
+		
+			}
+		});
+		
+		JMenuItem OpenF = new JMenuItem("Open File");
+		OpenF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent OpenFEvent) {
+				
+				JFileChooser Arquivo = new JFileChooser(); 
+				Arquivo.resetChoosableFileFilters();
+				fodase trad = new fodase();
+				trad.traducao();
+				SwingUtilities.updateComponentTreeUI(Arquivo);
+				FileNameExtensionFilter filtrar = new FileNameExtensionFilter( "Arquivos Java ou txt", "JAVA", "txt");
+				Arquivo.setFileFilter(filtrar);
+				Arquivo.setAcceptAllFileFilterUsed(false);
+				int retornarValor = Arquivo.showOpenDialog(getParent());
+				if (retornarValor == JFileChooser.APPROVE_OPTION) {
+					JOptionPane.showMessageDialog(null,"VocÊ escolheu este arquivo " + Arquivo.getSelectedFile(). getAbsolutePath());			
+				}else {
+					JOptionPane.showMessageDialog(null,"Operação Cancelada\n","Aviso",1);
+				}
+			}
+		});
+		
+		JMenuItem OpenP = new JMenuItem("Open Projects");
+		OpenP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent OpenFEvent) {
+				
+				JFileChooser Pastas = new JFileChooser();
+				Pastas.resetChoosableFileFilters();
+				fodase trad = new fodase();
+				trad.traducao();
+				SwingUtilities.updateComponentTreeUI(Pastas);
+				Pastas.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				Pastas.setAcceptAllFileFilterUsed(false);
+				int retornarValor = Pastas.showOpenDialog(getParent());
+					if (retornarValor == JFileChooser.APPROVE_OPTION) {
+						JOptionPane.showMessageDialog(null,"Você escolheu esta pasta: \n" + Pastas.getSelectedFile(). getAbsolutePath(),"Aviso",1);	
+					}else {
+						JOptionPane.showMessageDialog(null,"Operação Cancelada\n","Aviso",1);
+					}
+				}
+			});
+		JMenuItem Close = new JMenuItem("Close");
+		
+		JMenuItem CloseAll = new JMenuItem("Close All");
+		
+		JMenuItem Save = new JMenuItem("Save");
+		Save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent OpenFEvent) {
+				JFileChooser Salvar = new JFileChooser();
+				Salvar.resetChoosableFileFilters();
+				fodase trad = new fodase();
+				trad.salvou();
+				FileNameExtensionFilter filtrar = new FileNameExtensionFilter( "Arquivos Java ou txt", "JAVA", "txt");
+				Salvar.setFileFilter(filtrar);
+				SwingUtilities.updateComponentTreeUI(Salvar);
+				Salvar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				Salvar.setAcceptAllFileFilterUsed(false);
+				int retornarValor = Salvar.showSaveDialog(getParent());
+					if (retornarValor == JFileChooser.APPROVE_OPTION) {
+						JOptionPane.showMessageDialog(null,"Codigo salvo com sucesso! \n" + Salvar.getSelectedFile(). getAbsolutePath(),"Aviso",1);	
+					}else {
+						JOptionPane.showMessageDialog(null,"Operação Cancelada\n","Aviso",1);
+					}
+			}
+			});
+		
+		//sub menu do Edit
+		JMenuItem Copy = new JMenuItem("Copy");
+		JMenuItem SelectAll = new JMenuItem("Select All");
+		JMenuItem Delete = new JMenuItem("Delete");
+		JMenuItem Cut = new JMenuItem("Cut");
+		JMenuItem Paste = new JMenuItem("Paste");
+		
+		//sub menu do menu compilation
+		JMenuItem CompAll = new JMenuItem("Compilation all");
+		
+		//sub menu do menu help
+		JMenuItem Search = new JMenuItem("Search");
+		JMenuItem WebSite = new JMenuItem("Web Site");
+		JMenuItem Exit = new JMenuItem("Exit");
+		
+		//adicionar os sub menus aos menus
+		barra.add(File);
+		barra.add(Edit);
+		barra.add(Compilation);
+		barra.add(Help);
+		
+		File.add(Nw);
+		File.add(OpenF);
+		File.add(OpenP);
+		File.add(Close);
+		File.add(CloseAll);
+		File.add(Save);
+		
+		Edit.add(Copy);
+		Edit.add(SelectAll);
+		Edit.add(Delete);
+		Edit.add(Cut);
+		Edit.add(Paste);
+		
+		Compilation.add(CompAll);
+		
+		Help.add(WebSite);
+		Help.add(Search);
+		Help.add(Exit);
+		
+		barra.setBackground(SystemColor.menu);
+		barra.setBounds(0, 0, 1951, 23);
+		contentPane.add(barra);
+		
+		
+	}
+}
