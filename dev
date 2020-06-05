@@ -1,7 +1,7 @@
-package View;
+package mainPage;
 
-import programMobile.Mobile;
-import ProgramWeb.Web;
+import codeMobile.Mobile;
+import codeWeb.Web;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
