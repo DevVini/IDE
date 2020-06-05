@@ -1,8 +1,8 @@
-package programMobile;
+package codeMobile;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import View.Dev;
+import mainPage.Dev;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
@@ -92,13 +92,13 @@ public class Mobile extends JFrame {
 		});
 		
 		JMenuBar barra = new JMenuBar();
-		//barra do menu
+		
 		JMenu File = new JMenu ("File");
 		JMenu Edit = new JMenu ("Edit");
 		JMenu Compilation = new JMenu ("Compilation");
 		JMenu Help = new JMenu ("Help");
 		
-		//sub menu do File
+	
 		JMenuItem Nw = new JMenuItem("New");
 		JMenuItem OpenF = new JMenuItem("Open File");
 		JMenuItem OpenP = new JMenuItem("Open Projects");
@@ -106,22 +106,22 @@ public class Mobile extends JFrame {
 		JMenuItem CloseAll = new JMenuItem("Close All");
 		JMenuItem Save = new JMenuItem("Save");
 		
-		//sub menu do Edit
+	
 		JMenuItem Copy = new JMenuItem("Copy");
 		JMenuItem SelectAll = new JMenuItem("Select All");
 		JMenuItem Delete = new JMenuItem("Delete");
 		JMenuItem Cut = new JMenuItem("Cut");
 		JMenuItem Paste = new JMenuItem("Paste");
 		
-		//sub menu do menu compilation
+		
 		JMenuItem CompAll = new JMenuItem("Compilation all");
 		
-		//sub menu do menu help
+	
 		JMenuItem Search = new JMenuItem("Search");
 		JMenuItem WebSite = new JMenuItem("Web Site");
 		JMenuItem Exit = new JMenuItem("Exit");
 		
-		//adicionar os sub menus aos menus
+		
 		barra.add(File);
 		barra.add(Edit);
 		barra.add(Compilation);
